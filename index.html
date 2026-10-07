@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>訪問実績</title>
+<meta name="apple-mobile-web-app-title" content="訪問実績">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff9a2e">
+<style>
+  body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+       background:#fff4e6;font-family:"Hiragino Sans","Yu Gothic UI",sans-serif;color:#5a3a1a;text-align:center;padding:0 24px;box-sizing:border-box}
+  img{width:96px;height:96px;border-radius:22px}
+  a{display:inline-block;padding:14px 28px;border-radius:12px;background:#ff9a2e;color:#fff;font-size:18px;font-weight:700;text-decoration:none}
+  p{margin:0;font-size:15px}
+</style>
+</head>
+<body>
+<img src="apple-touch-icon.png" alt="">
+<p>訪問実績アプリを開いています…</p>
+<a id="go" href="#">開かないときはここを押す</a>
+<script>
+  // ▼ ここだけ書き換え：看護師さんに使ってもらうアプリのURL
+  var APP_URL = 'https://script.google.com/macros/s/AKfycbxd5gOzCNkkXZ9qmkyYEtBZKS8KFeoJL_w9eyBM3Q7CRttXXEPxBqcA_vuKN9A_1wYnMQ/exec';
+  document.getElementById('go').href = APP_URL;
+  // ?stay 付きで開いたときは移動しない（この画面でホーム画面に追加するため）。
+  // そのときアドレスから ?stay を消しておくので、ホーム画面のアイコンは普通に移動する入口になる。
+  if (location.search.indexOf('stay') >= 0) {
+    history.replaceState(null, '', location.pathname);
+    document.querySelector('p').textContent = '共有ボタン →「ホーム画面に追加」で、このアイコンを置いてください';
+  } else if (APP_URL.indexOf('https://') === 0) {
+    setTimeout(function(){ location.replace(APP_URL); }, 300);
+  }
+</script>
+</body>
+</html>
